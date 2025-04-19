@@ -1,0 +1,183 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhmocbym5857o"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_4e5al"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_u52qu"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_e0kjl"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_2c1xy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5jycm"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.627451)
+
+[sub_resource type="BoxMesh" id="BoxMesh_syh0g"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ogisi"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hskma"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="Animation" id="Animation_m6ue6"]
+resource_name = "Attack1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackHitboxes/Attack1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.999),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"attack_start"
+}, {
+"args": [],
+"method": &"attack_end"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_8pisu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackHitboxes/Attack1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AttackHitboxes/Attack2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_q4ha8"]
+resource_name = "Attack2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AttackHitboxes/Attack2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.999),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.999),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"attack_start"
+}, {
+"args": [],
+"method": &"attack_end"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_miobb"]
+_data = {
+"Attack1": SubResource("Animation_m6ue6"),
+"Attack2": SubResource("Animation_q4ha8"),
+"RESET": SubResource("Animation_8pisu")
+}
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_4e5al")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_u52qu")
+
+[node name="Visuals" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Visuals"]
+mesh = SubResource("CapsuleMesh_e0kjl")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.11067, 0)
+mesh = SubResource("PrismMesh_2c1xy")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Visuals"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 1.11067, 0.299675)
+mesh = SubResource("PrismMesh_2c1xy")
+
+[node name="AttackHitboxes" type="Node3D" parent="."]
+
+[node name="Attack1" type="Area3D" parent="AttackHitboxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.667081)
+visible = false
+monitoring = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitboxes/Attack1"]
+transform = Transform3D(1, 0, 0, 0, 2.13372, 0, 0, 0, 1, 0, 0.268663, 0)
+material_override = SubResource("StandardMaterial3D_5jycm")
+mesh = SubResource("BoxMesh_syh0g")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="AttackHitboxes/Attack1"]
+transform = Transform3D(1, 0, 0, 0, 2.13372, 0, 0, 0, 1, 0, 0.268663, 0)
+shape = SubResource("ConvexPolygonShape3D_ogisi")
+
+[node name="Attack2" type="Area3D" parent="AttackHitboxes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.884569)
+visible = false
+monitoring = false
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="AttackHitboxes/Attack2"]
+transform = Transform3D(2.00422, 0, 0, 0, 0.591426, 0, 0, 0, 1, 0, 0.268663, 0)
+material_override = SubResource("StandardMaterial3D_5jycm")
+mesh = SubResource("BoxMesh_syh0g")
+skeleton = NodePath("../../Attack2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AttackHitboxes/Attack2"]
+transform = Transform3D(2.00422, 0, 0, 0, 0.591426, 0, 0, 0, 1, 0, 0.268663, 0)
+shape = SubResource("ConvexPolygonShape3D_hskma")
+
+[node name="RunTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_miobb")
+}
+
+[connection signal="timeout" from="RunTimer" to="." method="_on_run_timer_timeout"]

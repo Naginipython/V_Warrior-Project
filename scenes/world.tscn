@@ -1,0 +1,96 @@
+[gd_scene load_steps=13 format=3 uid="uid://bu1kr0jykqg5v"]
+
+[ext_resource type="PackedScene" uid="uid://dhmocbym5857o" path="res://scenes/player.tscn" id="1_a0k7w"]
+[ext_resource type="Script" path="res://scripts/singleton.gd" id="1_o5sib"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_eqwr1"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_kte6k"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_nchqa"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="4_mdgrl"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lwb5s"]
+sky_top_color = Color(0.129, 0.129, 0.129, 1)
+sky_horizon_color = Color(0.129, 0.129, 0.129, 1)
+ground_bottom_color = Color(0.129, 0.129, 0.129, 1)
+ground_horizon_color = Color(0.129, 0.129, 0.129, 1)
+
+[sub_resource type="Sky" id="Sky_74nvy"]
+sky_material = SubResource("ProceduralSkyMaterial_lwb5s")
+
+[sub_resource type="Environment" id="Environment_08wkd"]
+background_mode = 2
+sky = SubResource("Sky_74nvy")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v1h31"]
+albedo_color = Color(0, 1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_phmxt"]
+script = ExtResource("3_nchqa")
+duration = 0.3
+transition = 2
+ease = 1
+
+[sub_resource type="Resource" id="Resource_wsmbh"]
+script = ExtResource("4_mdgrl")
+keep_aspect = 1
+cull_mask = 1048575
+h_offset = 0.0
+v_offset = 0.0
+projection = 0
+fov = 75.0
+size = 1.0
+frustum_offset = Vector2(0, 0)
+near = 0.05
+far = 4000.0
+
+[node name="World" type="Node3D"]
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_o5sib")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_08wkd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Map" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+material_override = SubResource("StandardMaterial3D_v1h31")
+use_collision = true
+size = Vector3(100, 1, 100)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -4.83575)
+use_collision = true
+
+[node name="Player" parent="." instance=ExtResource("1_a0k7w")]
+
+[node name="PlayerCamera" type="Node3D" parent="." node_paths=PackedStringArray("follow_target")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.917665, 0.397356, 0, -0.397356, 0.917665, 0, 2.98678, 4.58833)
+script = ExtResource("2_eqwr1")
+priority = 10
+follow_mode = 6
+follow_target = NodePath("../Player/Visuals")
+tween_resource = SubResource("Resource_phmxt")
+tween_on_load = false
+camera_3d_resource = SubResource("Resource_wsmbh")
+follow_damping = true
+follow_distance = 5.0
+spring_length = 5.0
+
+[node name="MainCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.917665, 0.397356, 0, -0.397356, 0.917665, 0, 2.98678, 4.58833)
+
+[node name="PhantomCameraHost" type="Node" parent="MainCamera"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_kte6k")
+
+[editable path="Player"]
